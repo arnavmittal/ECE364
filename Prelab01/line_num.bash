@@ -1,0 +1,26 @@
+#! /bin/bash
+#
+# $Author: ee364d07 $
+# $Date: 2016-01-18 15:07:42 -0500 (Mon, 18 Jan 2016) $
+# $Revision: 85555 $
+# $HeadURL: svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S16/students/ee364d07/Prelab01/line_num.bash $
+
+i=0
+
+if [[ ! $# == 1 ]]
+then
+    echo "Usage: line_num.bash <filename>"
+    exit 0
+elif [[ ! -r $1 ]]
+then
+    echo "Cannot read $1"
+    exit 0
+else
+    while read line
+    do
+        ((i=$i+1))
+        echo "$i:$line"
+    done < $1 
+    echo
+fi
+exit 0

@@ -1,0 +1,19 @@
+#! /bin/bash
+#
+# $Author$
+# $Date$
+# $Revision$
+# $HeadURL$
+
+for allfiles in $@
+do
+    if [[ -r $allfiles ]]
+    then
+        echo "File $allfiles is readable!"
+    elif [[ ! -e $allfiles ]]
+    then
+        touch $allfiles
+    fi
+done
+
+exit 0

@@ -1,0 +1,78 @@
+def getPairwiseDifference(vec):
+    new_vec=[]
+    if (type(vec) is not list):
+        return(None)
+
+    if (len(vec) == 0):
+        return(None)
+
+    for i in range(0,len(vec)-1):
+        new_vec.append(vec[i+1]-vec[i])
+    return(new_vec)
+
+def flatten(l):
+    if (type(l) is not list):
+        return(None)
+
+    for i in l:
+        if (type(i) is not list):
+            return(None)
+    new_list=[]
+    for j in l:
+        for k in j:
+            new_list.append(k)
+    return(new_list)
+
+def partition(l,n):
+    if (type(l) is not list):
+        return(None)
+
+    if (len(l) == 0):
+        return(None)
+
+    new_list=[]
+    sublist=[]
+
+    length_l=0
+    count=n
+    for i in l:
+        length_l=length_l+1
+        if(count != 0):
+            count=count-1
+            sublist.append(i)
+        if(count == 0 or length_l == len(l)):
+            count=n
+            new_list.append(sublist)
+            sublist=[]
+    return(new_list)
+
+def rectifySignal(signal):
+    if (type(signal) is not list):
+        return(None)
+
+    if (len(signal) == 0):
+        return(None)
+
+    new_list=[]
+
+    for i in signal:
+        if(i < 0):
+            new_list.append(0)
+        else:
+            new_list.append(i)
+
+    return(new_list)
+
+def floatRange(a,b,s):
+    if ( float(a) < float(b)):
+        return(None)
+    sum=float(a)
+    new_list=[]
+    num=(float(b)-float(a))/float(s)
+    for i in range(num):
+	new_list.append(float(sum))
+	sum=float(sum)+float(s)
+    return(new_list)
+
+if __name__=="__main__":
+print(floatRange(0,4,0.5))

@@ -1,0 +1,39 @@
+#! /bin/bash
+#
+# $Author$
+# $Date$
+# $Revision$
+# $HeadURL$
+
+if [[ ! $# == 1 ]]
+then
+    echo "Usage: ./getCourseStats.bash <course name>"
+    exit 1
+fi
+
+if [[ ! $1 == "ece364" && ! $1 == "ece337" && ! $1 == "ece468" ]]
+then
+    echo "Error: course $1 is not a valid option."
+    exit 5
+fi
+
+totalstud=0
+avgscore=0
+for args in $(ls gradebooks/$1*.txt)
+do
+    ./getFinalScores.bash $args
+    if [[ ! $? == "0" ]]
+    then
+        echo "Error while running getFinalScores.bash"
+        exit 3
+    fi
+    totalstud=$(( $totalstud + $(cat $args | wc -l ) ))
+    while read $( echo $args | cut -d '.' -f1 )".out"
+    do
+        let avgscore=$(( $avgscore + $(echo $( echo $args | cut -d '.' -f1 )".out" | cut -d ',' -f2) ))
+    done
+done
+echo "Total students: $totalstud"
+echo "Average score: $avgscore"
+
+exit 0

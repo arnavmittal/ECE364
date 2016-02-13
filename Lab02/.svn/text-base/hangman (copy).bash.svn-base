@@ -1,0 +1,36 @@
+#! /bin/bash
+#
+# $Author$
+# $Date$
+# $Revision$
+# $HeadURL$
+check=0
+while (( $check == 0 ))
+do
+    number=$RANDOM
+    if (( number < 3 ))
+    then
+        option=$number
+        echo "$number"
+        check=1
+    fi
+done
+
+if (( $number == 1 ))
+then
+    value="b a n a n a"
+elif (( $number == 2 ))
+then
+    value="p a r s i m o n i o u s"
+else
+    value="s e s q u i p e d a l i a n"
+fi
+
+word=($value)
+#(( count=$(echo $word |wc -c) - 1 ))
+echo "Your word is ${#word[*]} letters long."
+echo ${!word[*]}
+echo -n "Word is: "
+
+exit 0
+

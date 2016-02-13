@@ -1,0 +1,84 @@
+#! /bin/bash
+#
+# $Author: ee364d07 $
+# $Date: 2016-02-01 09:35:38 -0500 (Mon, 01 Feb 2016) $
+# $Revision: 87372 $
+# $HeadURL: svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S16/students/ee364d07/Lab02/hangman.bash $
+check=0
+while (( $check == 0 ))
+do
+    number=$RANDOM
+    if (( number < 3 ))
+    then
+        option=$number
+        check=1
+    fi
+done
+
+if (( $number == 1 ))
+then
+    value="b a n a n a"
+    value2="banana"
+elif (( $number == 2 ))
+then
+    value="p a r s i m o n i o u s"
+    value2="parsimonious"
+else
+    value="s e s q u i p e d a l i a n"
+    value2="sesquipedalian"
+fi
+
+word=($value)
+
+echo "Your word is ${#word[*]} letters long."
+for m in ${!word[*]}
+do
+    guess_word[$m]="."
+done
+loop=0
+found=0
+completed=0
+while (( $loop == 0 ))
+do
+    echo "Word is: ${guess_word[*]}"
+    echo -n "  Make a guess: " 
+    read guess
+    for j in ${!word[*]}
+    do
+        if [[ $guess == ${word[$j]} ]]
+        then
+            found=1
+	    if [[ $guess == ${guess_word[$j]} ]]
+	    then
+		found=0
+	    fi
+	    guess_word[$j]=$guess
+        fi
+    done
+    if [[ $found == "1" ]]
+    then
+        echo "  Good going!"
+        echo ""
+        found=0
+    else
+        echo "  Sorry, try again."
+        echo ""
+    fi
+    for k in ${!word[*]}
+    do
+        if [[ ${guess_word[$k]} == "." ]]
+        then 
+            completed=0
+            break
+        fi
+        completed=1
+    done
+    if (( $completed == 1))
+    then
+        echo "Congratulations! You guessed the word: $value2"
+        exit 0
+    fi
+done
+
+exit 0
+

@@ -1,0 +1,8 @@
+#! /bin/bash
+#
+# $Author: ee364d07 $
+# $Date: 2016-01-18 14:06:49 -0500 (Mon, 18 Jan 2016) $
+# $Revision: 85528 $
+# $HeadURL: svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S16/students/ee364d07/Prelab01/check_file.bash $
+
+exit 0
