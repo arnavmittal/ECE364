@@ -1,7 +1,48 @@
 from glob import glob
 
 def getCallActivity():
-    return 0
+    dict_std=make_dict()
+    dict_time={}
+    dict_final={}
+    with open('Call Log.txt') as inputLog:
+        all_lines = inputLog.readlines()
+        for lines in all_lines[2:]:
+            line = lines.split()
+            match_1=line[1]
+            match=match_1[4:]
+            value=line[4]
+            if match not in dict_time:
+                dict_time[match]= [value]
+            else:
+                dict_time[match].append(value)
+
+        for key in dict_time:
+            min=0
+            sec=0
+            numb=len(dict_time[key])
+            for i in dict_time[key]:
+                data = i.split(":")
+                min+=int(data[0])
+                sec+=int(data[1])
+            fin_sec=sec%60
+            fin_min=int(min+sec/60)
+            fin_hr=int(fin_min/60)
+            fin_min=fin_min%60
+            new_str=""
+            if(fin_hr <= 9):
+                new_str+="0"
+            new_str+=str(fin_hr)
+            new_str+=":"
+            new_str+=str(fin_min)
+            new_str+=":"
+            new_str+=str(fin_sec)
+            dict_time[key]=(numb,new_str)
+        for keys in dict_std:
+            new_key = dict_std[keys]
+            new_value = dict_time[keys]
+            dict_final[new_key]=new_value
+
+    return dict_final
 
 def getCallersOf(Number):
     dict_std=make_dict()
@@ -15,14 +56,16 @@ def getCallersOf(Number):
             match=match_1[4:]
             new_set={}
             if key in dict_caller:
-                if match in dict_std:
-                    dict_caller[key].append(dict_std[match])
+                if dict_std[match] not in dict_caller:
+                    if(dict_std[match] not in dict_caller[key]):
+                        dict_caller[key].append(dict_std[match])
+                        dict_caller[key].sort()
             else:
-                if match in dict_std:
                     dict_caller[key]=[dict_std[match]]
+            #print("DEBUG HERE")
             #still working here
-        print("HERE I AM")
-    return dict_caller[Number]
+        #print("HERE I AM")
+    return dict_caller.get(Number, [])
 
 def make_dict():
     temp_dict = {}
@@ -35,28 +78,6 @@ def make_dict():
             id = id.replace("x","")
             temp_dict[id] = name
     return temp_dict
-
-def getDetails():
-    course_files= glob('files/EE*')
-    dict_std=make_dict()
-    dict_score={}
-    crs_num=''
-    for course in course_files:
-        crs_num=course[10:13]
-        with open(course) as curr_crs_file:
-            data = curr_crs_file.readlines()
-            #print (data)
-            for i in range(2,len(data)):
-                data_line=data[i].split()
-                #print (data_line)
-                key = dict_std[data_line[0]]
-                tup1 = (crs_num, int(data_line[1]))
-                if key in dict_score:
-                    dict_score[key].add(tup1)
-                else:
-                    dict_score[key]={tup1}
-    #print (dict_score)
-    return dict_score
 
 def solvePuzzle(sourceFile, TargetFile):
     #print(sourceFile)
