@@ -8,14 +8,21 @@ def getCallersOf(Number):
     dict_caller={}
     with open('Call Log.txt') as inputLog:
         all_lines = inputLog.readlines()
-        for all_lines in all_lines[2:]:
-            line = all_lines.split()
-            key = ' '.join(line[0:2])
-            match_1=line[3]
+        for lines in all_lines[2:]:
+            line = lines.split()
+            key = ' '.join(line[2:4])
+            match_1=line[1]
             match=match_1[4:]
+            new_set={}
+            if key in dict_caller:
+                if match in dict_std:
+                    dict_caller[key].append(dict_std[match])
+            else:
+                if match in dict_std:
+                    dict_caller[key]=[dict_std[match]]
             #still working here
-            print("HERE I AM")
-    return 0
+        print("HERE I AM")
+    return dict_caller[Number]
 
 def make_dict():
     temp_dict = {}

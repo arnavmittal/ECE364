@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/lab05_tests.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
+              <caret line="79" column="45" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="45" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -38,8 +38,8 @@
       <file leaf-file-name="Call Log.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Call Log.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+            <state vertical-scroll-proportion="-3.857143">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -48,8 +48,8 @@
       <file leaf-file-name="practical1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/practical1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21204819">
-              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.7902098">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,7 +140,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests in lab05_tests">
+  <component name="RunManager" selected="Python.practical1">
     <configuration default="false" name="Nosetests in lab05_tests" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -329,8 +329,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in lab05_tests" />
-        <item index="1" class="java.lang.String" itemvalue="Python.practical1" />
+        <item index="0" class="java.lang.String" itemvalue="Python.practical1" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in lab05_tests" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetest Lab05TestSuite.test_solvePuzzle" />
       </list>
     </recent_temporary>
@@ -368,24 +368,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 01m 56s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 03m 43s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 04m 54s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 19m 11s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 21m 33s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 27m 41s.xml">
-      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 42m 14s.xml">
       <configuration name="Nosetests in lab05_tests" configurationId="tests" />
     </history-entry>
@@ -398,6 +380,24 @@
     <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 07h 59m 00s.xml">
       <configuration name="Nosetests in lab05_tests" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 26m 08s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 37m 02s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 39m 48s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 41m 07s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 50m 42s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_lab05_tests - 2016.02.16 at 08h 50m 51s.xml">
+      <configuration name="Nosetests in lab05_tests" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1280" height="547" extended-state="1" />
@@ -407,9 +407,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6351351" sideWeight="0.88009405" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7454955" sideWeight="0.88009405" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4009009" sideWeight="0.80172414" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29054055" sideWeight="0.80172414" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0472973" sideWeight="0.19827586" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -430,11 +430,11 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/practical1.py</url>
-          <line>16</line>
+          <line>23</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="60" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -609,28 +609,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Call Log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab05_tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="26" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
+          <caret line="79" column="45" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="45" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Call Log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.857143">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/practical1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21204819">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.7902098">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
