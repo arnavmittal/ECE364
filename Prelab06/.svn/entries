@@ -1,15 +1,15 @@
 10
 
 dir
-85918
+88682
 svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S16/students/ee364d07/Prelab06
 svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn
 
 
 
-2009-06-08T21:14:42.889201Z
-2
-ee364ta
+2016-02-23T04:08:43.849520Z
+88682
+ee364d07
 
 
 
@@ -28,31 +28,137 @@ ee364ta
 
 email_edit.py
 file
-0
-
-
-add
 
 
 
 
-
+2016-02-23T03:26:24.364939Z
+1d7e68fa9396a7c0c3e5907ee71dea6d
+2016-02-23T03:59:36.493296Z
+88679
+ee364d07
 has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+475
+
+function_finder.py
+file
+
+
+
+
+2016-02-23T03:55:38.562409Z
+efa23d4c9b57470e6f3f53b556029f22
+2016-02-23T03:59:36.493296Z
+88679
+ee364d07
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1024
+
+prelab06_ee364d07.pdf
+file
+
+
+
+
+2016-02-23T04:07:31.607558Z
+22aec4693b2e51fee08e1eb806c2f619
+2016-02-23T04:08:43.849520Z
+88682
+ee364d07
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+32942
 
 ip_detect.py
 file
-0
-
-
-add
 
 
 
 
-
+2016-02-23T03:26:24.398941Z
+a614f14ccf98f2a1dbd45c7204fc2a8e
+2016-02-23T03:59:36.493296Z
+88679
+ee364d07
 has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1311
 
