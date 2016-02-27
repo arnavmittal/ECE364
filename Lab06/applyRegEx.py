@@ -175,18 +175,22 @@ def getUsersWithoutEmails():
     final_dict={}
     final_list=[]
 
+    #print("-----------------------PHONE AND NO EMAIL")
     for key in phone_dict:
-        if key in state_dict:
+        if key not in email_dict:
             #print(key)
             final_list.append(key)
-        else:
-            final_list.append(key)
+
+    #print("-----------------------STATE AND NO EMAIL")
     for key in state_dict:
-        if key not in phone_dict:
+        if key not in email_dict:
+            #print(key)
             final_list.append(key)
-    final_set=(final_list)
+
+    final_list.sort()
+    final_set=set(final_list)
     new_list=list(final_set)
-    #print(final_list.sort())
+    new_list.sort()
     return new_list
 
 def getUsersWithoutPhones():
