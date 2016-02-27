@@ -172,7 +172,6 @@ def getUsersWithoutEmails():
     email_dict=getUsersWithEmails()
     phone_dict=getUsersWithPhones()
     state_dict=getUsersWithStates()
-    final_dict={}
     final_list=[]
 
     #print("-----------------------PHONE AND NO EMAIL")
@@ -194,10 +193,52 @@ def getUsersWithoutEmails():
     return new_list
 
 def getUsersWithoutPhones():
-    return 0
+    email_dict=getUsersWithEmails()
+    phone_dict=getUsersWithPhones()
+    state_dict=getUsersWithStates()
+    final_list=[]
+
+    #print("-----------------------PHONE AND NO EMAIL")
+    for key in email_dict:
+        if key not in phone_dict:
+            #print(key)
+            final_list.append(key)
+
+    #print("-----------------------STATE AND NO EMAIL")
+    for key in state_dict:
+        if key not in phone_dict:
+            #print(key)
+            final_list.append(key)
+
+    final_list.sort()
+    final_set=set(final_list)
+    new_list=list(final_set)
+    new_list.sort()
+    return new_list
 
 def getUsersWithoutStates():
-    return 0
+    email_dict=getUsersWithEmails()
+    phone_dict=getUsersWithPhones()
+    state_dict=getUsersWithStates()
+    final_list=[]
+
+    #print("-----------------------PHONE AND NO EMAIL")
+    for key in email_dict:
+        if key not in state_dict:
+            #print(key)
+            final_list.append(key)
+
+    #print("-----------------------STATE AND NO EMAIL")
+    for key in phone_dict:
+        if key not in state_dict:
+            #print(key)
+            final_list.append(key)
+
+    final_list.sort()
+    final_set=set(final_list)
+    new_list=list(final_set)
+    new_list.sort()
+    return new_list
 
 def getUsersWithCompleteInfo():
     email_dict=getUsersWithEmails()
