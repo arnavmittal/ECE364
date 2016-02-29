@@ -2,6 +2,7 @@ import decimal
 import sys
 import os
 from math import sqrt
+import copy
 
 class PointND:
     def __init__(self,*args):
@@ -51,19 +52,41 @@ class PointND:
         return dist_dict[minimum]
 
     def clone(self):
-        
-
+        q = copy.deepcopy(self)
+        return q
+    #//////////////////////////////////PROBLEM SOMEWHERE HERE////////////////////////////////////
+    def __add__(self, other):
+        print(type(other))
+        if isinstance(self, other):
+            print(self.t+other.t)
+            return PointND(self.t + other.t)
+        else:
+            print(self.t+other)
+            return PointND(self.t + other)
+        #copied = []
+        #if type(other) == float:
+        #    for element in self.t:
+        #        value= element + other
+        #        copied.append(value)
+        #    new_point=tuple(copied)
+        #    p=PointND()
+        #    p.t=new_point
+        #    return p
+        #if type(other) == tuple:
+        #    p= PointND()
+        #    p.t=tuple([item1 + item2 for item1, item2 in zip(other.t, self.t)])
+        #    return p
 
 def main():
-    p1 = PointND(4.0,0.0,-3.0)
-    p2 = PointND(0.0,0.0,0.0)
-    pointList = [PointND(1.5, 2.7, 0.0), PointND(1.0, 1.0, 0.0), PointND(-2.0, 3.0, 0.0)]
+    p1 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
+    p2 = PointND(0.5, 0.4, 0.3, 0.2, 0.1)
+    q = p1 + p2
+    print(q.t)
     #print(p1.n)
     #print(p1.t)
     #print(p1.__str__())
     #print(p1.__hash__())
     #print(p1.distanceFrom(p2))
-    print(p2.nearestPoint(pointList))
 
 if __name__ == "__main__" :
     main()
