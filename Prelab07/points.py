@@ -54,34 +54,75 @@ class PointND:
     def clone(self):
         q = copy.deepcopy(self)
         return q
-    #//////////////////////////////////PROBLEM SOMEWHERE HERE////////////////////////////////////
+
     def __add__(self, other):
-        print(type(other))
-        if isinstance(self, other):
-            print(self.t+other.t)
-            return PointND(self.t + other.t)
-        else:
-            print(self.t+other)
-            return PointND(self.t + other)
-        #copied = []
-        #if type(other) == float:
-        #    for element in self.t:
-        #        value= element + other
-        #        copied.append(value)
-        #    new_point=tuple(copied)
-        #    p=PointND()
-        #    p.t=new_point
-        #    return p
-        #if type(other) == tuple:
-        #    p= PointND()
-        #    p.t=tuple([item1 + item2 for item1, item2 in zip(other.t, self.t)])
-        #    return p
+        if type(other) == float:
+            p=PointND()
+            p.t=tuple([item1 + other for item1 in self.t])
+            return p
+        if type(other.t) == tuple:
+            if other.n != self.n:
+                raise ValueError("Cannot operate on points with different cardinality.")
+            p= PointND()
+            p.t=tuple([item1 + item2 for item1, item2 in zip(other.t, self.t)])
+            return p
+    __radd__=__add__
+
+    def __sub__(self, other):
+        if type(other) == float:
+            p=PointND()
+            p.t=tuple([item1 - other for item1 in self.t])
+            return p
+        if type(other.t) == tuple:
+            if other.n != self.n:
+                raise ValueError("Cannot operate on points with different cardinality.")
+            p= PointND()
+            p.t=tuple([item1 - item2 for item1, item2 in zip(self.t, other.t)])
+            return p
+
+    def __mul__(self, other):
+        if type(other) == float:
+            p=PointND()
+            p.t=tuple([item1 * other for item1 in self.t])
+            return p
+        if type(other.t) == tuple:
+            if other.n != self.n:
+                raise ValueError("Cannot operate on points with different cardinality.")
+            p= PointND()
+            p.t=tuple([item1 * item2 for item1, item2 in zip(self.t, other.t)])
+            return p
+    __rmul__=__mul__
+
+    def __truediv__(self, other):
+        if type(other) == float:
+            p=PointND()
+            p.t=tuple([ item1 / other for item1 in self.t])
+            return p
+
+        if type(other.t) == tuple:
+            if other.n != self.n:
+                raise ValueError("Cannot operate on points with different cardinality.")
+            p= PointND()
+            p.t=tuple([item1 / item2 for item1, item2 in zip(self.t, other.t)])
+            return p
+
+    def __neg__(self):
+        p = PointND
+        p.t=tuple([-item1 for item1 in self.t])
+        return p
+
+    def __index__(self):
+        p = PointND[i]
+        return p
+
 
 def main():
-    p1 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
+    #p1 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
     p2 = PointND(0.5, 0.4, 0.3, 0.2, 0.1)
-    q = p1 + p2
-    print(q.t)
+    p1 = PointND(110.0, 121.0, 132.0, 134.0, 145.0)
+    #q = 10.0 + p2
+    q = p1[3]
+    print(q)
     #print(p1.n)
     #print(p1.t)
     #print(p1.__str__())
