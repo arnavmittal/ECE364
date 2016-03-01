@@ -30,9 +30,7 @@ class PointND:
 
     def distanceFrom(self, other):
         t_sum=0
-        #print(self.t)
-        #print(other.t)
-        if self.n != other.n:
+        if len(self.t) != len(other.t):
             raise ValueError("Cannot calculate distance between points of different cardinality.")
         for element1, element2 in zip(self.t, other.t):
             t_sum+=(element1-element2)**2
@@ -111,23 +109,88 @@ class PointND:
         p.t=tuple([-item1 for item1 in self.t])
         return p
 
-    def __index__(self):
-        p = PointND[i]
-        return p
+    def __getitem__(self, item):
+        value = self.t[item]
+        return value
+
+    def __eq__(self, other):
+        if len(other.t) != len(self.t):
+            raise ValueError("Cannot operate on points with different cardinality.")
+        for element1, element2 in zip(self.t, other.t):
+            if element1 != element2:
+                return False
+        return True
+
+    def __ne__(self, other):
+        if len(other.t) != len(self.t):
+            raise ValueError("Cannot operate on points with different cardinality.")
+        q = self.__eq__(other)
+        return not q
+
+    def __gt__(self, other):
+        if other.n != self.n:
+            raise ValueError("Cannot operate on points with different cardinality.")
+        origin = PointND()
+        origin.t=tuple([0.0 for item in other.t])
+        dist1 = self.distanceFrom(origin)
+        dist2 = other.distanceFrom(origin)
+        if (dist1 > dist2):
+            return True
+        return False
+
+    def __ge__(self, other):
+        if other.n != self.n:
+            raise ValueError("Cannot operate on points with different cardinality.")
+        origin = PointND()
+        origin.t=tuple([0.0 for item in other.t])
+        dist1 = self.distanceFrom(origin)
+        dist2 = other.distanceFrom(origin)
+        if (dist1 >= dist2):
+            return True
+        return False
+
+    def __lt__(self, other):
+        if other.n != self.n:
+            raise ValueError("Cannot operate on points with different cardinality.")
+        origin = PointND()
+        origin.t=tuple([0.0 for item in other.t])
+        dist1 = self.distanceFrom(origin)
+        dist2 = other.distanceFrom(origin)
+        if (dist1 < dist2):
+            return True
+        return False
+
+    def __le__(self, other):
+        if other.n != self.n:
+            raise ValueError("Cannot operate on points with different cardinality.")
+        origin = PointND()
+        origin.t=tuple([0.0 for item in other.t])
+        dist1 = self.distanceFrom(origin)
+        dist2 = other.distanceFrom(origin)
+        if (dist1 <= dist2):
+            return True
+        return False
+
+class Point3D(PointND):
+    def __init__(self, x=0.0, y=0.0, z=0.0):
+        self.x = x
+        self.y = y
+        self.z = z
+        PointND.__init__(self, x, y ,z)
+
 
 
 def main():
-    #p1 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
-    p2 = PointND(0.5, 0.4, 0.3, 0.2, 0.1)
-    p1 = PointND(110.0, 121.0, 132.0, 134.0, 145.0)
-    #q = 10.0 + p2
-    q = p1[3]
-    print(q)
+    p1 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
+    p2 = PointND(1.0, 2.1, 3.2, 3.4, 4.5)
+    p3 = PointND(1.0, 2.1, 3.2, 5.5)
+    q = p1 < p2
     #print(p1.n)
     #print(p1.t)
     #print(p1.__str__())
     #print(p1.__hash__())
     #print(p1.distanceFrom(p2))
+    print(q)
 
 if __name__ == "__main__" :
     main()
