@@ -1,15 +1,15 @@
 10
 
 dir
-85918
+89532
 svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn/S16/students/ee364d07/Prelab08
 svn+ssh://ece364sv@ecegrid-thin1/home/ecegrid/a/ece364sv/svn
 
 
 
-2009-06-08T21:14:42.889201Z
-2
-ee364ta
+2016-03-08T04:21:24.046949Z
+89532
+ee364d07
 
 
 
@@ -28,61 +28,137 @@ ee364ta
 
 except.py
 file
-0
-
-
-add
 
 
 
 
-
+2016-03-08T03:36:47.508629Z
+bae6a35521268625435fa3e5d9247de5
+2016-03-08T04:20:58.122365Z
+89530
+ee364d07
 has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
-
-listmod.py
-file
-0
-
-
-add
 
 
 
 
 
-has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
-
-lists.py
-file
-0
-
-
-add
 
 
 
 
 
-has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+297
 
 parse.py
 file
-0
-
-
-add
 
 
 
 
-
+2016-03-08T04:21:15.819242Z
+69dbdc28c376eb4f1ade33a0f7a10eac
+2016-03-08T04:21:24.046949Z
+89532
+ee364d07
 has-props
-has-prop-mods
-svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+864
+
+listmod.py
+file
+
+
+
+
+2016-03-08T03:25:42.534824Z
+596cc54752b5344bebe8d6c3ecb07c0c
+2016-03-08T04:20:58.122365Z
+89530
+ee364d07
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+322
+
+lists.py
+file
+
+
+
+
+2016-03-08T03:27:30.636158Z
+d4c00be708860ebd8d589fa58284d4a7
+2016-03-08T04:20:58.122365Z
+89530
+ee364d07
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+506
 
