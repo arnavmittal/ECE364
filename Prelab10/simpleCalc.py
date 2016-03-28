@@ -13,6 +13,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.strokes=0
         self.operator=0
         self.list=[]
+        self.calc=0
 
         self.add_cnt=0
         self.sub_cnt=0
@@ -50,6 +51,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display0(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         self.strokes += 1
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'0')
@@ -57,6 +63,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display1(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         self.strokes += 1
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'1')
@@ -64,6 +75,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display2(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'2')
         self.strokes += 1
@@ -71,6 +87,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display3(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'3')
         self.strokes += 1
@@ -78,6 +99,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display4(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'4')
         self.strokes += 1
@@ -85,6 +111,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display5(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'5')
         self.strokes += 1
@@ -92,6 +123,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display6(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'6')
         self.strokes += 1
@@ -99,6 +135,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display7(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'7')
         self.strokes += 1
@@ -106,6 +147,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display8(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'8')
         self.strokes += 1
@@ -113,6 +159,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display9(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         self.txtDisplay.setText(current_disp+'9')
         self.strokes += 1
@@ -120,6 +171,11 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
     def display_dot(self):
         if(self.strokes == 0):
             self.operation_clr()
+
+        if(self.calc == 1):
+            self.disp_clr()
+            self.calc = 0
+
         current_disp = self.txtDisplay.text()
         if '.' not in current_disp:
             self.txtDisplay.setText(current_disp+'.')
@@ -127,13 +183,15 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
 
 
     def operation_add(self):
+        self.calc=1
         self.operator+=1
         self.strokes+=1
         self.add_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('+')
-        self.disp_clr()
+        #-------------------------------MODIFIED
+        #self.disp_clr()
         print("NUM OF OPERATORS")
         print(self.operator)
         print("BEFORE")
@@ -187,13 +245,15 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.debug_1()
 
     def operation_sub(self):
+        self.calc=1
         self.operator+=1
         self.strokes+=1
         self.sub_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('-')
-        self.disp_clr()
+        #-------------------------------MODIFIED
+        #self.disp_clr()
         print("NUM OF OPERATORS")
         print(self.operator)
         print("BEFORE")
@@ -251,13 +311,15 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.debug_1()
 
     def operation_mul(self):
+        self.calc=1
         self.operator+=1
         self.strokes+=1
         self.mul_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('*')
-        self.disp_clr()
+        #-------------------------------MODIFIED
+        #self.disp_clr()
         print("NUM OF OPERATORS")
         print(self.operator)
         print("BEFORE")
@@ -315,13 +377,15 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.debug_1()
 
     def operation_div(self):
+        self.calc=1
         self.operator+=1
         self.strokes+=1
         self.div_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('/')
-        self.disp_clr()
+        #-------------------------------MODIFIED
+        #self.disp_clr()
         print("NUM OF OPERATORS")
         print(self.operator)
         print("BEFORE")
@@ -461,6 +525,8 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("FINAL")
         self.debug_1()
+        del self.list[0]
+        self.txtDisplay.setText(str(self.final_value))
 
 
 currentApp = QApplication(sys.argv)
