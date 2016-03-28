@@ -11,7 +11,6 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.setupUi(self)
 
         self.strokes=0
-        #self.current_disp = self.txtDisplay.text()
         self.list=[]
 
         self.final_value=0
@@ -122,33 +121,48 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
 
 
     def operation_add(self):
+        self.strokes+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('+')
-        self.operation_clr()
+        self.disp_clr()
 
     def operation_sub(self):
+        self.strokes+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('-')
-        self.operation_clr()
+        self.disp_clr()
 
     def operation_mul(self):
+        self.strokes+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('*')
-        self.operation_clr()
+        self.disp_clr()
 
     def operation_div(self):
+        self.strokes+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('/')
-        self.operation_clr()
+        self.disp_clr()
+
+    def debug_1(self):
+        print(self.list)
 
     def operation_eql(self):
-        pass
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        self.debug_1()
 
     def operation_clr(self):
+        self.txtDisplay.clear()
+        self.txtDisplay.setText('')
+        self.strokes=0
+        self.list=[]
+
+    def disp_clr(self):
         self.txtDisplay.clear()
         self.txtDisplay.setText('')
 
