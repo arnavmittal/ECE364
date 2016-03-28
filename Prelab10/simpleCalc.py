@@ -11,10 +11,16 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.setupUi(self)
 
         self.strokes=0
+        self.operator=0
         self.list=[]
 
-        self.final_value=0
-        self.operator=""
+        self.add_cnt=0
+        self.sub_cnt=0
+        self.mul_cnt=0
+        self.div_cnt=0
+
+        self.final_value=0.00000
+
         self.calc=0
         self.eql=0
         self.decimal=0
@@ -121,50 +127,341 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
 
 
     def operation_add(self):
+        self.operator+=1
         self.strokes+=1
+        self.add_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('+')
         self.disp_clr()
+        print("NUM OF OPERATORS")
+        print(self.operator)
+        print("BEFORE")
+        self.debug_1()
+        if self.operator >= 2:
+            #ADDITION
+            if self.list[1] == '+':
+                try:
+                    self.add_cnt-=1
+                    self.final_value = (float(self.list[0]) + float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #MULTIPLICATION
+            elif self.list[1] == '*':
+                try:
+                    self.mul_cnt-=1
+                    self.final_value = (float(self.list[0]) * float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #SUBTRACTION
+            elif self.list[1] == '-':
+                try:
+                    self.sub_cnt-=1
+                    self.final_value = (float(self.list[0]) - float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #DIVISION
+            elif self.list[1] == '/':
+                try:
+                    self.div_cnt-=1
+                    self.final_value = (float(self.list[0]) / float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+        print("AFTER")
+        self.debug_1()
 
     def operation_sub(self):
+        self.operator+=1
         self.strokes+=1
+        self.sub_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('-')
         self.disp_clr()
+        print("NUM OF OPERATORS")
+        print(self.operator)
+        print("BEFORE")
+        self.debug_1()
+        if self.operator >= 2:
+            #ADDITION
+            if self.list[1] == '+':
+                try:
+                    self.operator-=1
+                    self.add_cnt-=1
+                    self.final_value = (float(self.list[0]) + float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #MULTIPLICATION
+            elif self.list[1] == '*':
+                try:
+                    self.operator-=1
+                    self.mul_cnt-=1
+                    self.final_value = (float(self.list[0]) * float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #SUBTRACTION
+            elif self.list[1] == '-':
+                try:
+                    self.operator-=1
+                    self.sub_cnt-=1
+                    self.final_value = (float(self.list[0]) - float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #DIVISION
+            elif self.list[1] == '/':
+                try:
+                    self.operator-=1
+                    self.div_cnt-=1
+                    self.final_value = (float(self.list[0]) / float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+        print("AFTER")
+        self.debug_1()
 
     def operation_mul(self):
+        self.operator+=1
         self.strokes+=1
+        self.mul_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('*')
         self.disp_clr()
+        print("NUM OF OPERATORS")
+        print(self.operator)
+        print("BEFORE")
+        self.debug_1()
+        if self.operator >= 2:
+            #ADDITION
+            if self.list[1] == '+':
+                try:
+                    self.operator-=1
+                    self.add_cnt-=1
+                    self.final_value = (float(self.list[0]) + float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #MULTIPLICATION
+            elif self.list[1] == '*':
+                try:
+                    self.operator-=1
+                    self.mul_cnt-=1
+                    self.final_value = (float(self.list[0]) * float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #SUBTRACTION
+            elif self.list[1] == '-':
+                try:
+                    self.operator-=1
+                    self.sub_cnt-=1
+                    self.final_value = (float(self.list[0]) - float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #DIVISION
+            elif self.list[1] == '/':
+                try:
+                    self.operator-=1
+                    self.div_cnt-=1
+                    self.final_value = (float(self.list[0]) / float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+        print("AFTER")
+        self.debug_1()
 
     def operation_div(self):
+        self.operator+=1
         self.strokes+=1
+        self.div_cnt+=1
         current_disp = self.txtDisplay.text()
         self.list.append(current_disp)
         self.list.append('/')
         self.disp_clr()
+        print("NUM OF OPERATORS")
+        print(self.operator)
+        print("BEFORE")
+        self.debug_1()
+        if self.operator >= 2:
+            #ADDITION
+            if self.list[1] == '+':
+                try:
+                    self.operator-=1
+                    self.add_cnt-=1
+                    self.final_value = (float(self.list[0]) + float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #MULTIPLICATION
+            elif self.list[1] == '*':
+                try:
+                    self.operator-=1
+                    self.mul_cnt-=1
+                    self.final_value = (float(self.list[0]) * float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #SUBTRACTION
+            elif self.list[1] == '-':
+                try:
+                    self.operator-=1
+                    self.sub_cnt-=1
+                    self.final_value = (float(self.list[0]) - float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #DIVISION
+            elif self.list[1] == '/':
+                try:
+                    self.operator-=1
+                    self.div_cnt-=1
+                    print(self.list)
+                    self.final_value = (float(self.list[0]) / float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+        print("AFTER")
+        self.debug_1()
 
     def debug_1(self):
+        print('List = ')
         print(self.list)
+        print('Add = '+str(self.add_cnt))
+        print('Sub = '+str(self.sub_cnt))
+        print('Mul = '+str(self.mul_cnt))
+        print('Div = '+str(self.div_cnt))
 
-    def operation_eql(self):
-        current_disp = self.txtDisplay.text()
-        self.list.append(current_disp)
-        self.debug_1()
 
     def operation_clr(self):
         self.txtDisplay.clear()
         self.txtDisplay.setText('')
         self.strokes=0
         self.list=[]
+        self.add_cnt=0
+        self.sub_cnt=0
+        self.mul_cnt=0
+        self.div_cnt=0
+        self.final_value=0.000
+        self.operator = 0
 
     def disp_clr(self):
         self.txtDisplay.clear()
         self.txtDisplay.setText('')
+
+    def operation_eql(self):
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        print("NUM OF OPERATORS")
+        print(self.operator)
+        if self.operator >= 1:
+            #ADDITION
+            if self.list[1] == '+':
+                try:
+                    self.operator-=1
+                    self.add_cnt-=1
+                    self.final_value = (float(self.list[0]) + float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #MULTIPLICATION
+            elif self.list[1] == '*':
+                try:
+                    self.operator-=1
+                    self.mul_cnt-=1
+                    self.final_value = (float(self.list[0]) * float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #SUBTRACTION
+            elif self.list[1] == '-':
+                try:
+                    self.operator-=1
+                    self.sub_cnt-=1
+                    self.final_value = (float(self.list[0]) - float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+            #DIVISION
+            elif self.list[1] == '/':
+                try:
+                    self.operator-=1
+                    self.div_cnt-=1
+                    print(self.list)
+                    self.final_value = (float(self.list[0]) / float(self.list[2]))
+                    del self.list[0]
+                    del self.list[0]
+                    del self.list[0]
+                    self.list.insert(0, str(self.final_value))
+                except ValueError:
+                    raise ValueError("The typed expression is invalid")
+        print("FINAL")
+        self.debug_1()
+
 
 currentApp = QApplication(sys.argv)
 currentForm = CalculatorConsumer()
