@@ -10,13 +10,16 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         super(CalculatorConsumer, self).__init__(parent)
         self.setupUi(self)
 
-        self.x=0
-        self.y=0
-        self.final=0
+        self.strokes=0
+        #self.current_disp = self.txtDisplay.text()
+        self.list=[]
+
+        self.final_value=0
         self.operator=""
         self.calc=0
-        self.finished=0
+        self.eql=0
         self.decimal=0
+
         # Number buttons clicked and then add the value of button pressed to txtdisplay
         self.btn0.clicked.connect(self.display0)
         self.btn1.clicked.connect(self.display1)
@@ -40,91 +43,114 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
 
     # Mapping Clicked to Display in self.txtDisplay
     def display0(self):
-        value='0'
-        expr = self.txtDisplay.text()
-        if self.calc == 1 and self.operator != "=":
-
-            self.txtDisplay.setText(value)
-        self.txtDisplay.setText(expr+value)
+        if(self.strokes == 0):
+            self.operation_clr()
+        self.strokes += 1
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'0')
 
     def display1(self):
-        value=1
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        self.strokes += 1
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'1')
 
     def display2(self):
-        value=2
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'2')
+        self.strokes += 1
 
     def display3(self):
-        value=3
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'3')
+        self.strokes += 1
 
     def display4(self):
-        value=4
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'4')
+        self.strokes += 1
 
     def display5(self):
-        value=5
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'5')
+        self.strokes += 1
 
     def display6(self):
-        value=6
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'6')
+        self.strokes += 1
 
     def display7(self):
-        value=7
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'7')
+        self.strokes += 1
 
     def display8(self):
-        value=8
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'8')
+        self.strokes += 1
 
     def display9(self):
-        value=9
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(str(float(expr)*10+value))
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        self.txtDisplay.setText(current_disp+'9')
+        self.strokes += 1
 
     def display_dot(self):
-        value='.'
-        expr = self.txtDisplay.text()
-        self.txtDisplay.setText(expr+value)
+        if(self.strokes == 0):
+            self.operation_clr()
+        current_disp = self.txtDisplay.text()
+        if '.' not in current_disp:
+            self.txtDisplay.setText(current_disp+'.')
+            self.strokes += 1
 
 
     def operation_add(self):
-        self.calc=1
-        self.operator = '+'
-        self.x = self.txtDisplay.text()
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        self.list.append('+')
+        self.operation_clr()
 
     def operation_sub(self):
-        self.calc=1
-        self.operator = '-'
-        self.x = self.txtDisplay.text()
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        self.list.append('-')
+        self.operation_clr()
 
     def operation_mul(self):
-        self.calc=1
-        self.operator = '*'
-        self.x = self.txtDisplay.text()
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        self.list.append('*')
+        self.operation_clr()
 
     def operation_div(self):
-        self.calc=1
-        self.operator = '/'
-        self.x = self.txtDisplay.text()
+        current_disp = self.txtDisplay.text()
+        self.list.append(current_disp)
+        self.list.append('/')
+        self.operation_clr()
 
     def operation_eql(self):
-        self.finished=1
-        self.operator = '='
-        self.x = self.txtDisplay.text()
+        pass
 
     def operation_clr(self):
-        self.txtDisplay.setText("")
+        self.txtDisplay.clear()
+        self.txtDisplay.setText('')
 
 currentApp = QApplication(sys.argv)
 currentForm = CalculatorConsumer()
