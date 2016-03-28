@@ -14,6 +14,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.operator=0
         self.list=[]
         self.calc=0
+        self.eqpressed=0
 
         self.add_cnt=0
         self.sub_cnt=0
@@ -197,6 +198,9 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('+')
+        if self.eqpressed == 1:
+            del self.list[1]
+            self.eqpressed=0
         #-------------------------------MODIFIED
         #self.disp_clr()
         print("NUM OF OPERATORS")
@@ -250,6 +254,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("AFTER")
         self.debug_1()
+        self.display()
 
     def operation_sub(self):
         self.calc=1
@@ -259,6 +264,9 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('-')
+        if self.eqpressed == 1:
+            del self.list[1]
+            self.eqpressed=0
         #-------------------------------MODIFIED
         #self.disp_clr()
         print("NUM OF OPERATORS")
@@ -316,6 +324,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("AFTER")
         self.debug_1()
+        self.display()
 
     def operation_mul(self):
         self.calc=1
@@ -325,6 +334,9 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('*')
+        if self.eqpressed == 1:
+            del self.list[1]
+            self.eqpressed=0
         #-------------------------------MODIFIED
         #self.disp_clr()
         print("NUM OF OPERATORS")
@@ -382,6 +394,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("AFTER")
         self.debug_1()
+        self.display()
 
     def operation_div(self):
         self.calc=1
@@ -391,6 +404,9 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('/')
+        if self.eqpressed == 1:
+            del self.list[1]
+            self.eqpressed=0
         #-------------------------------MODIFIED
         #self.disp_clr()
         print("NUM OF OPERATORS")
@@ -449,6 +465,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("AFTER")
         self.debug_1()
+        self.display()
 
     def debug_1(self):
         print('List = ')
@@ -476,6 +493,9 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.txtDisplay.setText('')
 
     def operation_eql(self):
+        if self.eqpressed == 1:
+            del self.list[0]
+        self.eqpressed = 1
         current_disp = self.gettext()
         self.list.append(current_disp)
         print("NUM OF OPERATORS")
@@ -532,22 +552,26 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
                     raise ValueError("The typed expression is invalid")
         print("FINAL")
         self.debug_1()
-        del self.list[0]
+        #del self.list[0]
         self.display()
 
     def display(self):
-
         text = str(self.cboDecimal.currentText())
         activated = self.chkSeparator.isChecked()
-        activate = QtCore.Qt.Checked
-        print('ACTIVATED STATUS')
-        print(activate)
         if activated == True:
             comma= ','
         else:
             comma=''
-        final_string='{:{sprtr}.{dec}f}'.format(self.final_value, sprtr= comma , dec=int(text))
-        self.txtDisplay.setText(final_string)
+
+        mid_str = str(self.final_value).split('.')
+        curr_len = len(mid_str[0])+int(text)
+        if curr_len > 12:
+             self.txtDisplay.setText('Error: Value > 12 digits')
+        else:
+            print('LIST IS HEREEEEEEEEEEEEEEE')
+            print(self.list[0])
+            final_string='{:{sprtr}.{dec}f}'.format(float(self.list[0]), sprtr= comma , dec=int(text))
+            self.txtDisplay.setText(final_string)
 
 
 currentApp = QApplication(sys.argv)
