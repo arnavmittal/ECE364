@@ -47,6 +47,13 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.btnEqual.clicked.connect(self.operation_eql)
         self.btnClear.clicked.connect(self.operation_clr)
 
+    def gettext(self):
+        current_disp = self.txtDisplay.text()
+        if ',' in current_disp:
+            new_str = current_disp.replace(",","")
+        else:
+            new_str = current_disp
+        return new_str
     # Mapping Clicked to Display in self.txtDisplay
     def display0(self):
         if(self.strokes == 0):
@@ -57,7 +64,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.calc = 0
 
         self.strokes += 1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'0')
 
     def display1(self):
@@ -69,7 +76,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.calc = 0
 
         self.strokes += 1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'1')
 
     def display2(self):
@@ -80,7 +87,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'2')
         self.strokes += 1
 
@@ -92,7 +99,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'3')
         self.strokes += 1
 
@@ -104,7 +111,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'4')
         self.strokes += 1
 
@@ -116,7 +123,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'5')
         self.strokes += 1
 
@@ -128,7 +135,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'6')
         self.strokes += 1
 
@@ -140,7 +147,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'7')
         self.strokes += 1
 
@@ -152,7 +159,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'8')
         self.strokes += 1
 
@@ -164,7 +171,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.txtDisplay.setText(current_disp+'9')
         self.strokes += 1
 
@@ -176,7 +183,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
             self.disp_clr()
             self.calc = 0
 
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         if '.' not in current_disp:
             self.txtDisplay.setText(current_disp+'.')
             self.strokes += 1
@@ -187,7 +194,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.operator+=1
         self.strokes+=1
         self.add_cnt+=1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('+')
         #-------------------------------MODIFIED
@@ -249,7 +256,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.operator+=1
         self.strokes+=1
         self.sub_cnt+=1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('-')
         #-------------------------------MODIFIED
@@ -315,7 +322,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.operator+=1
         self.strokes+=1
         self.mul_cnt+=1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('*')
         #-------------------------------MODIFIED
@@ -381,7 +388,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.operator+=1
         self.strokes+=1
         self.div_cnt+=1
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.list.append(current_disp)
         self.list.append('/')
         #-------------------------------MODIFIED
@@ -469,7 +476,7 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         self.txtDisplay.setText('')
 
     def operation_eql(self):
-        current_disp = self.txtDisplay.text()
+        current_disp = self.gettext()
         self.list.append(current_disp)
         print("NUM OF OPERATORS")
         print(self.operator)
@@ -526,7 +533,21 @@ class CalculatorConsumer(QMainWindow, Ui_Calculator):
         print("FINAL")
         self.debug_1()
         del self.list[0]
-        self.txtDisplay.setText(str(self.final_value))
+        self.display()
+
+    def display(self):
+
+        text = str(self.cboDecimal.currentText())
+        activated = self.chkSeparator.isChecked()
+        activate = QtCore.Qt.Checked
+        print('ACTIVATED STATUS')
+        print(activate)
+        if activated == True:
+            comma= ','
+        else:
+            comma=''
+        final_string='{:{sprtr}.{dec}f}'.format(self.final_value, sprtr= comma , dec=int(text))
+        self.txtDisplay.setText(final_string)
 
 
 currentApp = QApplication(sys.argv)
