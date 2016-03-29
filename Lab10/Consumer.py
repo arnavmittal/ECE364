@@ -91,7 +91,6 @@ class Consumer(QMainWindow, Ui_MainWindow):
         self.zipLineEdit.setText(Zip)
         self.emailLineEdit.setText(Email)
         self.loadButton.setEnabled(False)
-        pass
 
     def loadData(self):
         """
