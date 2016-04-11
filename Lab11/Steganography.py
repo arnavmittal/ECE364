@@ -118,3 +118,35 @@ def extractIMG(self):
             new_list[3*i+1]=dcmp_val[int(len(dcmp_val)/3)+i]
             new_list[3*i+2]=dcmp_val[int(len(dcmp_val)/3)*2+i]
         self.img = np.resize(new_list, (int(row),int(col),3))
+
+
+class Carrier:
+    def __init__(self, img):
+        self.img = img
+        if(type(img) is not np.ndarray):
+            raise TypeError("Image has incorrect type")
+
+    def payloadExists(self):
+    #--------------------------------------------------------#
+    # payload_type=1 if color, 0 if gray
+    #--------------------------------------------------------#
+        if(len(self.img.shape) == 3):
+            new_str=''
+            for i in range(8):
+                if(self.img[0][i][0] % 2):
+                    new_str+='1'
+                else:
+                    new_str+='0'
+        if(int(new_str, 2)==60):
+            return True
+        else:
+            return False
+
+    def clean(self):
+        pass
+
+    def embedPayload(self, payload, override=False):
+        pass
+
+    def extractPayload(self):
+        pass
