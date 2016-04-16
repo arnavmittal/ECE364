@@ -236,10 +236,7 @@ class SteganographyTestSuite(unittest.TestCase, ImageAssertion):
 
             expectedValue = imread(join(self.folder, "result1.png"))
             actualValue = c.embedPayload(p)
-            print("EXPECTED")
-            print(expectedValue)
-            print("ACTUAL")
-            print(actualValue)
+
             self.assertImageEqual(expectedValue, actualValue)
 
         with self.subTest(key="Gray in Color"):
