@@ -3,6 +3,12 @@ from copy import deepcopy
 import zlib
 import base64
 import re
+from os.path import join
+import unittest
+from numpy import ndarray as nmat
+from scipy.misc import *
+from Steganography import *
+
 
 class Payload:
     def __init__(self, img=None, compressionLevel=-1, xml=None):
@@ -161,14 +167,17 @@ class Carrier:
         return temp
 
     def embedPayload(self, payload, override=False):
+        print("EMBED PRINTING HERE")
+        print(len(payload.xml))
+        print(int(int(self.img.shape[0])*int(self.img.shape[1])/8))
         if(type(payload) is not Payload):
             raise TypeError("self or payload has an invalid type")
-        if(len(self.img.shape)==3):
+        '''if(len(self.img.shape)==3):
             if(len(payload.xml)*8 > int(self.img.shape[0])*int(self.img.shape[1])*3):
                 raise ValueError("payload can not be bigger than carrier")
         else:
             if(len(payload.xml)*8 > int(self.img.shape[0])*int(self.img.shape[1])):
-                raise ValueError("payload can not be bigger than carrier")
+                raise ValueError("payload can not be bigger than carrier")'''
         if(self.payloadExists() and override is False):
             raise Exception("Carrier already contains a payload, try again")
         return func1(self, payload)
@@ -228,17 +237,21 @@ def func1(self, payload):
 
     k=0
     raster_array = list(raster_scan(self))
+    print("RASTER ARRAY LEN PRINT")
+    print(len(raster_array))
     for i in range(len(fin_list)):
         if fin_list[k]==0:
             k+=1
             if raster_array[i] % 2 == 1:
                 raster_array[i] -= 1
+                # COMMENT THIS OUT
                 #if(raster_array[i] < 0):
                 #    raster_array[i] = 0
         elif fin_list[k]==1:
             k+=1
             if raster_array[i] % 2 == 0:
                 raster_array[i] += 1
+                # COMMENT THIS OUT
                 #if(raster_array[i] > 255):
                 #    raster_array[i] = 255
 
@@ -257,3 +270,12 @@ def func1(self, payload):
             new_list[3*i+2]=raster_array[int(len(raster_array)/3)*2+i]
         temp = np.resize(new_list, (int(self.img.shape[0]),int(self.img.shape[1]),3))
     return temp
+
+
+if __name__ == "__main__":
+    p = Payload(imread(join('test_images', "payload1.png")), 9)
+    c = Carrier(imread(join('test_images', 'result1.png')))
+
+    expectedValue = imread(join('test_images', 'result1.png'))
+    actualValue = c.embedPayload(p, True)
+    imsave('my_resulllll.png', actualValue)

@@ -47,6 +47,7 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
         # TAB 2
         #---------------------------------------------#
         self.data_c2 = None
+        self.directory=None
         self.viewCarrier2.setAcceptDrops(True)
         self.viewCarrier2.setDragMode = True
 
@@ -265,20 +266,15 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
         # Read the ndarray of the image
         #---------------------------------------------#
         self.data_c1 = imread(location)
-
+        imsave('car1mid.png', self.data_c1)
         #---------------------------------------------#
         # Getting the Size of Carrier
-        # ASK MARIAM - is the size from XML string or is it rows * columns
         #---------------------------------------------#
 
-        '''xml_str= Payload(img=self.data_c1).xml
-        size_chk=len(xml_str)'''
-
-        # OR
         if (len(Payload(img=self.data_c1).img.shape) == 3):
-            size_chk = int(Payload(img=self.data_c1).img.shape[0])*int(Payload(img=self.data_c1).img.shape[1])*3
+            size_chk = int(int(Payload(img=self.data_c1).img.shape[0])*int(Payload(img=self.data_c1).img.shape[1])*3 / 8)
         else:
-            size_chk = int(Payload(img=self.data_c1).img.shape[0])*int(Payload(img=self.data_c1).img.shape[1])
+            size_chk = int(int(Payload(img=self.data_c1).img.shape[0])*int(Payload(img=self.data_c1).img.shape[1]) / 8)
         #---------------------------------------------#
         # Set the txtCarrierSize
         # Check if payload already exists
@@ -321,7 +317,7 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
         carrier_size = int(self.txtCarrierSize.text())
         payload_size = int(self.txtPayloadSize.text())
 
-        if ( carrier_size >= payload_size):
+        if ( carrier_size > payload_size):
             save_progress += 1
 
         #---------------------------------------------#
@@ -343,7 +339,6 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
 
             #---------------------------------------------#
             # Get new image with embedded data
-            # ASK MARIAM - how to do this or if I did it is it the right way to do it
             #---------------------------------------------#
 
             print("         READY TO SAVE")
@@ -351,12 +346,13 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
             active=self.chkOverride.isChecked()
             self.new_img_data = carrier.embedPayload(payload=Payload(img=self.data_p1), override=active)
             #print(self.data_c1)
+            imsave('car1.png', carrier.img)
+            imsave('pay1.png', Payload(img=self.data_p1).img)
             print(self.new_img_data)
 
             #---------------------------------------------#
             # Bring up the save tab and location stuff
             # Write data to file
-            # ASK MARIAM - how to do this or if I did it is it the right way to do it
             #---------------------------------------------#
             fileName = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '/path/to/default/directory', selectedFilter='*.png')
             if fileName[0]:
@@ -410,6 +406,7 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
 
         scene = QGraphicsScene()
         pixmap = QPixmap(location)
+        self.directory=location
         scene.addPixmap(pixmap)
         self.viewCarrier2.setScene(scene)
         self.viewCarrier2.fitInView(scene.itemsBoundingRect(),  Qt.KeepAspectRatio)
@@ -421,7 +418,6 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
         self.data_c2 = imread(location)
 
         #---------------------------------------------#
-        # ASK MARIAM - is the checking for carrier empty right or not
         # Check if carrier is empty
         #    - set lblCarrierEmpty
         #    - set btnExtract, btnClean diabled
@@ -458,10 +454,14 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
 
             #---------------------------------------------#
             # Show image in view payload 2
-            # ASK MARIAM - how to display image(of the type ndarray) into a graphicsview window and then resizing it keeping the aspect ratio
             #---------------------------------------------#
             print("         DISPLAYING IMAGE")
-            #self.viewPayload2 = imshow(self.new_img_data_2)
+            imsave('temp.png', self.new_img_data_2)
+            scene = QGraphicsScene()
+            pixmap = QPixmap('temp.png')
+            scene.addPixmap(pixmap)
+            self.viewPayload2.setScene(scene)
+            self.viewPayload2.fitInView(scene.itemsBoundingRect(),  Qt.KeepAspectRatio)
             print("             Image Displayed")
 
     #---------------------------------------------#
@@ -473,13 +473,32 @@ class SteganographyConsumer(QMainWindow, Ui_MainWindow):
         if (self.carrier2_payload):
             #---------------------------------------------#
             # Clean payload
-            # ASK MARIAM - is it coorect way of cleaning and how to make sure img at the source is getting cleaned so as to set >>>> CARRIER EMPTY <<<<
+            # ASK MARIAM - is it correct way of cleaning and how to make sure img at the source is getting cleaned so as to set >>>> CARRIER EMPTY <<<<
             #---------------------------------------------#
             print("         CLEANING PAYLOAD")
             self.new_img_data_3 = Carrier.clean(Carrier(img=self.data_c2))
-            self.data_c2 = self.new_img_data_3
+            imsave(self.directory, self.new_img_data_3)
+            scene = QGraphicsScene()
+            pixmap = QPixmap(self.directory)
+            scene.addPixmap(pixmap)
+            self.viewCarrier2.setScene(scene)
+            self.viewCarrier2.fitInView(scene.itemsBoundingRect(),  Qt.KeepAspectRatio)
+            print("             Image Displayed")
 
+            self.viewPayload2.setScene(None)
 
+            if (Carrier.payloadExists(Carrier(img = self.new_img_data_3)) == False):
+                print("         CARRIER EMPTY")
+                self.lblCarrierEmpty.setText('>>>> Carrier Empty <<<<')
+                self.btnExtract.setEnabled(False)
+                self.btnClean.setEnabled(False)
+                self.carrier2_payload = False
+            else:
+                print("         CARRIER NOT EMPTY")
+                self.lblCarrierEmpty.setText('')
+                self.btnExtract.setEnabled(True)
+                self.btnClean.setEnabled(True)
+                self.carrier2_payload = True
 
 
 
