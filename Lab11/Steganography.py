@@ -12,9 +12,8 @@ from Steganography import *
 
 class Payload:
     def __init__(self, img=None, compressionLevel=-1, xml=None):
-        self.img = img
         self.cmplvl = compressionLevel
-        self.xml = str(xml)
+
 
         if(img is None and xml is None):
             raise ValueError("Image and XML are not provided.")
@@ -29,8 +28,10 @@ class Payload:
             raise TypeError("Image has incorrect type")
 
         if (xml):
+            self.xml = str(xml)
             extractIMG(self)
         else:
+            self.img = img
             raster_array = raster_scan(self)
             generateXML(self, raster_array)
 
@@ -81,7 +82,8 @@ def generateXML(self, raster_array):
     #--------------------------------------------------------#
     self.xml='<?xml version="1.0" encoding="UTF-8"?>\n'
     self.xml+='<payload type="'+payload_type+'" size="'+img_size+'" compressed="'+compressed+'">\n'
-    self.xml+=str(cmp_value, encoding='UTF-8')+'\n'
+    #self.xml+=str(cmp_value, encoding='UTF-8')+'\n'
+    self.xml+=str(cmp_value, 'UTF-8')+'\n'
     self.xml+='</payload>'
 
 def extractIMG(self):
@@ -210,6 +212,7 @@ class Carrier:
                 bin_str += str(new_list[i])
 
             temp=Payload(xml=new_str)
+
             return temp
         else:
             raise Exception("No payload contained")
